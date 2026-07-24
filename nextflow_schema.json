@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/xdaavid/rnaseq-reproducible-pipeline/nextflow_schema.json",
+  "title": "Reproducible RNA-seq pipeline parameters",
+  "description": "Parameters for paired-end transcript quantification.",
+  "type": "object",
+  "properties": {
+    "input": {
+      "type": "string",
+      "format": "file-path",
+      "description": "CSV sample sheet with sample, condition, fastq_1, and fastq_2 columns."
+    },
+    "transcriptome": {
+      "type": "string",
+      "format": "file-path",
+      "description": "Transcriptome reference in FASTA format."
+    },
+    "outdir": {
+      "type": "string",
+      "format": "directory-path",
+      "default": "results"
+    },
+    "min_length": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 30
+    },
+    "min_quality": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 40,
+      "default": 20
+    },
+    "salmon_libtype": {
+      "type": "string",
+      "minLength": 1,
+      "default": "A"
+    },
+    "save_trimmed": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "input",
+    "transcriptome"
+  ],
+  "additionalProperties": true
+}
