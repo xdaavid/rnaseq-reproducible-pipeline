@@ -8,7 +8,8 @@ request.
 
 - Nextflow 26.04.4 strict-syntax lint across `main.nf` and all local modules.
 - Six Python unit tests for sample-sheet validation and Salmon matrix merging.
-- Ruff 0.8.4 static analysis.
+- Ruff 0.16.0 static analysis in GitHub Actions; Ruff 0.8.4 was also used
+  during local development.
 - Python bytecode compilation.
 - Validation of all synthetic FASTQ records, including equal sequence and
   quality lengths.
@@ -23,11 +24,11 @@ The CI workflow runs the complete workflow graph on Ubuntu:
 nextflow run main.nf -profile test -stub-run
 ```
 
-The release workstation was native Windows without WSL2. Nextflow correctly
-refused native execution because it requires a POSIX-compatible environment.
-The workflow therefore received local strict-syntax validation, while the
-portable stub integration run is delegated to the included Ubuntu GitHub
-Actions job.
+The initial GitHub Actions run completed successfully on 2026-07-24, including
+both the Python checks and the Nextflow stub integration test. The release
+workstation was native Windows without WSL2, so local validation used
+Nextflow's strict-syntax lint while portable execution was verified on the
+Ubuntu CI runner.
 
 ## What the stub test does not prove
 
